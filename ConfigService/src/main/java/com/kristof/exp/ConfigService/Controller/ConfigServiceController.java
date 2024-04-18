@@ -1,11 +1,8 @@
 package com.kristof.exp.ConfigService.Controller;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParser;
 import com.kristof.exp.ConfigService.Exception.KException;
 import com.kristof.exp.ConfigService.Model.AddConfigRequestWrapper;
 import com.kristof.exp.ConfigService.Model.Property;
-import com.kristof.exp.ConfigService.Service.EnvironmentService;
 import com.kristof.exp.ConfigService.Service.FileService;
 import com.kristof.exp.ConfigService.Service.PropertyService;
 import org.slf4j.Logger;
@@ -21,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/config")
+@RequestMapping("/api/v1/config")
 public class ConfigServiceController {
     private final PropertyService propertyService;
     private final FileService fileService;
@@ -43,6 +40,7 @@ public class ConfigServiceController {
             // write property to file
             fileService.writePropertyToFile(newProperty);
         } catch (KException exception) {
+            // exception caught if property exists in database
             logger.error(exception.getMessage());
             return new ResponseEntity<>(exception.getMessage(), httpHeaders, HttpStatusCode.valueOf(409));
         } catch (Exception exception) {

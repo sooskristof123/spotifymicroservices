@@ -13,8 +13,9 @@ import java.nio.file.StandardOpenOption;
 public class FileService {
     public void writePropertyToFile(Property property) throws IOException {
         Path path = Paths.get("C:/dev/ConfigRepository/"+property.getApplication().getApplicationName());
+        // create the application's directory if doesn't exist
         Files.createDirectories(path);
-        //Files.createFile(path);
+        // if file exists append, otherwise create a new file
         if (Files.exists(Path.of(path.toString()+"/"+property.getApplication().getApplicationName() + "-" + property.getEnvironment().getEnvironmentName() + ".properties"))) {
             Files.writeString(Path.of(path.toString()+"/"+property.getApplication().getApplicationName() + "-" + property.getEnvironment().getEnvironmentName() + ".properties"),
                     "\n"+property.getKey()+"="+property.getValue(),
