@@ -6,6 +6,7 @@ import com.kristof.exp.ConfigService.Exception.KException;
 import com.kristof.exp.ConfigService.Model.AddConfigRequestWrapper;
 import com.kristof.exp.ConfigService.Model.Property;
 import com.kristof.exp.ConfigService.Service.EnvironmentService;
+import com.kristof.exp.ConfigService.Service.FileService;
 import com.kristof.exp.ConfigService.Service.PropertyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,10 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/config")
 public class ConfigServiceController {
     private final PropertyService propertyService;
+    private final FileService fileService;
     private final Logger logger = LoggerFactory.getLogger(ConfigServiceController.class);
     @Autowired
-    public ConfigServiceController(PropertyService propertyService) {
+    public ConfigServiceController(PropertyService propertyService, FileService fileService) {
         this.propertyService = propertyService;
+        this.fileService = fileService;
     }
     @PostMapping("/add")
     public ResponseEntity<String> addConfigToDatabase(@RequestBody AddConfigRequestWrapper requestWrapper) {
@@ -35,7 +38,10 @@ public class ConfigServiceController {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         Property newProperty = null;
         try {
+            // check and create property in database
             newProperty = propertyService.checkAndAddPropertyToDatabase(requestWrapper.getApplicationId(), requestWrapper.getEnvironmentId(), requestWrapper.getKey(), requestWrapper.getValue());
+            // write property to file
+            fileService.writePropertyToFile(newProperty);
         } catch (KException exception) {
             logger.error(exception.getMessage());
             return new ResponseEntity<>(exception.getMessage(), httpHeaders, HttpStatusCode.valueOf(409));
