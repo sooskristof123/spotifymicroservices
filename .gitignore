@@ -1,1 +1,5 @@
 /.idea
+/SpotifyChecker/.mvn/wrapper/maven-wrapper.jar
+/SpotifyChecker/.mvn/wrapper/maven-wrapper.properties
+/SpotifyChecker/mvnw
+/SpotifyChecker/mvnw.cmd
