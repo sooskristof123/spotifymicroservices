@@ -32,8 +32,8 @@ public class AuthenticationController {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         try {
-            UserDto userDto = userService.registerUser(requestWrapper.getUsername(), requestWrapper.getPassword(), requestWrapper.getRoleId());
-            return new ResponseEntity<>(userDto.getUserId().toString(), httpHeaders, HttpStatusCode.valueOf(201));
+            User user = userService.registerUser(requestWrapper.getUsername(), requestWrapper.getPassword(), requestWrapper.getRoleId());
+            return new ResponseEntity<>(user.getUserId().toString(), httpHeaders, HttpStatusCode.valueOf(201));
         } catch (KException exception) {
             return new ResponseEntity<>(exception.getMessage(), httpHeaders, HttpStatusCode.valueOf(409));
         } catch (Exception exception) {
