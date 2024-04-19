@@ -2,6 +2,7 @@ package com.kristof.exp.ConfigService.Model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
@@ -10,6 +11,7 @@ import java.util.Set;
 @Table(name = "configuration_properties")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Property {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +33,5 @@ public class Property {
         this.value = value;
         this.application = application;
         this.environment = environment;
-    }
-    public Property() {
     }
 }

@@ -23,8 +23,7 @@ public class PropertyService {
     public Property checkAndAddPropertyToDatabase(Long applicationId, Long environmentId, String key, String value) throws KException {
         // checking if property already exists with received values
         logger.info("Checking of property exists already...");
-        Property property = propertyRepository.findPropertyByAlProperties(applicationId, environmentId, key, value);
-        if (property == null) {
+        if (propertyRepository.findPropertyByAlProperties(applicationId, environmentId, key, value) == null) {
             try {
                 logger.info("Property doesn't exists, creating...");
                 Property newProperty = new Property(applicationService.getApplicationByIdFromDatabase(applicationId), environmentService.getEnvironmentByIdFromDatabase(environmentId), key, value);
