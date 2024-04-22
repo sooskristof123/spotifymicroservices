@@ -1,8 +1,6 @@
 package com.kristof.exp.AuthenticationService.Service;
 
-import com.kristof.exp.AuthenticationService.DataTransfer.UserDto;
 import com.kristof.exp.AuthenticationService.Exception.KException;
-import com.kristof.exp.AuthenticationService.Model.Role;
 import com.kristof.exp.AuthenticationService.Model.User;
 import com.kristof.exp.AuthenticationService.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +57,12 @@ public class UserService implements UserDetailsService {
         if (user.isPresent()) {
             return user.get();
         } throw new UsernameNotFoundException("User already exists with name: "+username);
+    }
+    public User findUserByName(String username) throws KException {
+        Optional<User> user = userRepository.findUserByName(username);
+        if (user.isPresent()) {
+            return user.get();
+        } throw new KException("User not found with username: "+username);
     }
     @Bean
     public PasswordEncoder passwordEncoder() {
