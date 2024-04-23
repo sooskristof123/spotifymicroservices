@@ -14,7 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -29,38 +31,23 @@ public class AuthenticationController {
         this.jwtService = jwtService;
     }
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody RegistrationRequestWrapper registrationRequestWrapper) {
-        // prepare http headers
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        try {
-            User user = userService.registerUser(registrationRequestWrapper.getUsername(), registrationRequestWrapper.getPassword(), registrationRequestWrapper.getRoleId());
-            return new ResponseEntity<>(user.getUserId().toString(), httpHeaders, HttpStatusCode.valueOf(201));
-        } catch (KException exception) {
-            return new ResponseEntity<>(exception.getMessage(), httpHeaders, HttpStatusCode.valueOf(409));
-        } catch (Exception exception) {
-            return new ResponseEntity<>(exception.getMessage(), httpHeaders, HttpStatusCode.valueOf(500));
-        }
+    public ResponseEntity<User> registerUser(@RequestBody RegistrationRequestWrapper registrationRequestWrapper, UriComponentsBuilder uriComponentsBuilder) throws Exception {
+        User user = userService.registerUser(registrationRequestWrapper.getUsername(), registrationRequestWrapper.getPassword(), registrationRequestWrapper.getRoleId());
+        return ResponseEntity.created(uriComponentsBuilder.path("/api/v1/auth/registration").build().toUri())
+                .body(user);
     }
     @PostMapping("/login")
-    public ResponseEntity<String> loginUserAndGetToken(@RequestBody LoginRequestWrapper loginRequestWrapper) {
-        // prepare http headers
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+    public ResponseEntity<String> loginUserAndGetToken(@RequestBody LoginRequestWrapper loginRequestWrapper) throws KException {
         String loginToken = null;
         // authenticate users
-        try {
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestWrapper.getUsername(), loginRequestWrapper.getPassword()));
-            if (authentication.isAuthenticated()) {
-                // if user authentication is successful generate JWT token
-                User user = userService.findUserByName(loginRequestWrapper.getUsername());
-                loginToken = jwtService.generateToken(user.getUsername(), user.getRole().getRoleName());
-                // authentication successful
-                return new ResponseEntity<>(loginToken, httpHeaders, HttpStatusCode.valueOf(200));
-            }
-        } catch (Exception exception) {
-                return new ResponseEntity<>("Authentication error: "+exception.getMessage(), httpHeaders, HttpStatusCode.valueOf(401));
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestWrapper.getUsername(), loginRequestWrapper.getPassword()));
+        if (authentication.isAuthenticated()) {
+            // if user authentication is successful generate JWT token
+            User user = userService.findUserByName(loginRequestWrapper.getUsername());
+            loginToken = jwtService.generateToken(user.getUsername(), user.getRole().getRoleName());
+            // authentication successful
+            return ResponseEntity.ok(loginToken);
         }
-        return new ResponseEntity<>("Something went wrong...", httpHeaders, HttpStatusCode.valueOf(500));
+        return ResponseEntity.internalServerError().build();
     }
 }
