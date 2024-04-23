@@ -1,5 +1,6 @@
 package com.kristof.exp.ConfigService.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,5 +20,6 @@ public class Environment implements Serializable {
     @Column(name = "environment_name")
     private String environmentName;
     @OneToMany(mappedBy = "environment", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Property> environments;
 }

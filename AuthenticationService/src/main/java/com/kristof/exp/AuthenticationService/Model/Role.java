@@ -1,5 +1,6 @@
 package com.kristof.exp.AuthenticationService.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,5 +19,6 @@ public class Role {
     @Column(name = "role_name")
     private String roleName;
     @OneToMany(mappedBy = "role")
+    @JsonIgnore
     private Set<User> users;
 }

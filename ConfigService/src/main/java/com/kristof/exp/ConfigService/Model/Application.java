@@ -1,5 +1,7 @@
 package com.kristof.exp.ConfigService.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,5 +20,6 @@ public class Application {
     @Column(name = "application_name")
     private String applicationName;
     @OneToMany(mappedBy = "application", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Property> applicationProperties;
 }
