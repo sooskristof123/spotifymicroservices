@@ -11,7 +11,7 @@ import java.util.Base64;
 
 @Service
 public class JwtService {
-    private RSAPublicKey publicKey;
+    public static RSAPublicKey publicKey;
     /**
      * Transforming the encoded string from AuthenticationService back to RSAPublicKey
      * @param publicKeyString public key string

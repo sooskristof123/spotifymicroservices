@@ -54,7 +54,7 @@ public class AuthenticationController {
             if (authentication.isAuthenticated()) {
                 // if user authentication is successful generate JWT token
                 User user = userService.findUserByName(loginRequestWrapper.getUsername());
-                loginToken = jwtService.generateToken(user.getUsername(), user.getUserId(), user.getRole().getRoleId());
+                loginToken = jwtService.generateToken(user.getUsername(), user.getRole().getRoleName());
                 // authentication successful
                 return new ResponseEntity<>(loginToken, httpHeaders, HttpStatusCode.valueOf(200));
             }

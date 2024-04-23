@@ -31,17 +31,16 @@ public class JwtService {
     /**
      * generate JWT token
      * @param username username
-     * @param userId userId of user
-     * @param roleId roleId of user
+     * @param roleName user's role's name
      * @return the JWT token string
      */
-    public String generateToken(String username, Long userId, Long roleId) {
+    public String generateToken(String username, String roleName) {
         // sign with public and private key
         Algorithm algorithm = Algorithm.RSA256(publicKey, privateKey);
         return JWT.create()
-                .withIssuer(username)
-                .withSubject(String.valueOf(userId))
-                .withClaim("role", roleId)
+                .withIssuer("AuthenticationService")
+                .withSubject(username)
+                .withClaim("role", roleName)
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
                 .sign(algorithm);
