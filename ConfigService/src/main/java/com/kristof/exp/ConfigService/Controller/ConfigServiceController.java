@@ -8,10 +8,10 @@ import com.kristof.exp.ConfigService.Model.Property;
 import com.kristof.exp.ConfigService.Service.FileService;
 import com.kristof.exp.ConfigService.Service.JwtService;
 import com.kristof.exp.ConfigService.Service.PropertyService;
-import com.kristof.exp.ConfigService.Service.RoleService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -26,19 +26,14 @@ public class ConfigServiceController {
     private final PropertyService propertyService;
     private final FileService fileService;
     private final JwtService jwtService;
-    private final RoleService roleService;
-    public ConfigServiceController(PropertyService propertyService, FileService fileService, JwtService jwtService, RoleService roleService) {
+    public ConfigServiceController(PropertyService propertyService, FileService fileService, JwtService jwtService) {
         this.propertyService = propertyService;
         this.fileService = fileService;
         this.jwtService = jwtService;
-        this.roleService = roleService;
     }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/property")
-    public ResponseEntity<Property> addConfigToDatabase(@RequestBody AddConfigRequestWrapper requestWrapper, UriComponentsBuilder uriComponentsBuilder, HttpServletRequest request) throws IOException, KException {
-        // extract JWT token from header
-        DecodedJWT decodedJWT = jwtService.extractAndValidateJwtTokenFromHeader(request);
-        // validate JWT token, and check user's role
-        roleService.checkIfUserHasRole(decodedJWT, "admin");
+    public ResponseEntity<Property> addConfigToDatabase(@RequestBody AddConfigRequestWrapper requestWrapper, UriComponentsBuilder uriComponentsBuilder) throws IOException, KException {
         // check and create property in database
         Property newProperty = propertyService.checkAndAddPropertyToDatabase(requestWrapper.getApplicationId(), requestWrapper.getEnvironmentId(), requestWrapper.getKey(), requestWrapper.getValue());
         // write property to file
