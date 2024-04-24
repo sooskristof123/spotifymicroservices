@@ -5,6 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.kristof.exp.ConfigService.Security.JwtAuthenticationFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,10 @@ import java.util.Base64;
 public class JwtService {
     @Getter
     private static RSAPublicKey publicKey;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    public JwtService(JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }
     /**
      * Transforming the encoded string from AuthenticationService back to RSAPublicKey
      * @param publicKeyString public key string
@@ -35,6 +40,8 @@ public class JwtService {
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         // generate the RSAPublicKey
         publicKey = (RSAPublicKey) keyFactory.generatePublic(keySpec);
+        // AuthGuard JWTVerifier
+        jwtAuthenticationFilter.setJwtVerifier(publicKey);
     }
     /**
      * Extracting JWT token the Authorization header
