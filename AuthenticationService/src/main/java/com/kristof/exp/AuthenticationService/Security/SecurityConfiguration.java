@@ -1,4 +1,4 @@
-package com.kristof.exp.AuthenticationService.Configuration;
+package com.kristof.exp.AuthenticationService.Security;
 
 import com.kristof.exp.AuthenticationService.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
