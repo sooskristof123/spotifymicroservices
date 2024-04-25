@@ -1,16 +1,13 @@
-package com.kristof.exp.ConfigService.Service;
+package com.kristof.exp.AuthGuard.Service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.kristof.exp.ConfigService.Model.UserDetail;
-import com.kristof.exp.ConfigService.Security.JwtAuthenticationFilter;
+import com.kristof.exp.AuthGuard.Model.UserDetail;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -26,7 +23,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
-@Slf4j
 public class JwtService {
     @Getter
     private static RSAPublicKey publicKey;
@@ -61,7 +57,6 @@ public class JwtService {
         // get JWT token from Authorization header
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer")) {
             DecodedJWT decodedJWT = jwtVerifier.verify(authorizationHeader.substring(7));
-            log.info("JWT token verification returned: {}", decodedJWT);
             UserDetail userDetails = new UserDetail();
             userDetails.setUsername(decodedJWT.getSubject());
             userDetails.setAuthorities(Stream.of(decodedJWT.getClaim("role").asString()).map(SimpleGrantedAuthority::new).collect(Collectors.toList()));

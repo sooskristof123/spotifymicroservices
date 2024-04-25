@@ -1,4 +1,4 @@
-package com.kristof.exp.ConfigService.Model;
+package com.kristof.exp.AuthGuard.Model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

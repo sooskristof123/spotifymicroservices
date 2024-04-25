@@ -1,16 +1,12 @@
-package com.kristof.exp.ConfigService.Security;
+package com.kristof.exp.AuthGuard.Security;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.kristof.exp.ConfigService.Service.JwtService;
+import com.kristof.exp.AuthGuard.Service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,17 +16,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.security.interfaces.RSAPublicKey;
+
 @Lazy
 @Component
-@Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     public JwtAuthenticationFilter(JwtService jwtService) {
         this.jwtService = jwtService;
     }
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, JWTVerificationException {
         String authHeader = request.getHeader("Authorization");
         String username = null;
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
@@ -38,7 +33,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 DecodedJWT decodedJWT = jwtService.getJwtVerifier().verify(authHeader.substring(7));
                 username = decodedJWT.getSubject();
             } catch (JWTVerificationException exception) {
-                log.error("JWT token verification error: {}", exception.getMessage());
+                throw new JWTVerificationException(exception.getMessage());
             }
         }
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

@@ -1,14 +1,12 @@
 package com.kristof.exp.ConfigService.Controller;
 
-import com.auth0.jwt.interfaces.DecodedJWT;
+import com.kristof.exp.AuthGuard.Service.JwtService;
 import com.kristof.exp.ConfigService.Exception.KException;
 import com.kristof.exp.ConfigService.Model.AddConfigRequestWrapper;
 import com.kristof.exp.ConfigService.Model.GetPublicKeyRequestMapper;
 import com.kristof.exp.ConfigService.Model.Property;
 import com.kristof.exp.ConfigService.Service.FileService;
-import com.kristof.exp.ConfigService.Service.JwtService;
 import com.kristof.exp.ConfigService.Service.PropertyService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.security.access.prepost.PreAuthorize;
