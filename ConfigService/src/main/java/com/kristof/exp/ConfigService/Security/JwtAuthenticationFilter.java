@@ -5,7 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.kristof.exp.ConfigService.Service.UserService;
+import com.kristof.exp.ConfigService.Service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,10 +25,9 @@ import java.security.interfaces.RSAPublicKey;
 @Component
 @Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    private JWTVerifier jwtVerifier = null;
-    private final UserService userService;
-    public JwtAuthenticationFilter(UserService userService) {
-        this.userService = userService;
+    private final JwtService jwtService;
+    public JwtAuthenticationFilter(JwtService jwtService) {
+        this.jwtService = jwtService;
     }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -36,22 +35,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String username = null;
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             try {
-                DecodedJWT decodedJWT = jwtVerifier.verify(authHeader.substring(7));
+                DecodedJWT decodedJWT = jwtService.getJwtVerifier().verify(authHeader.substring(7));
                 username = decodedJWT.getSubject();
             } catch (JWTVerificationException exception) {
                 log.error("JWT token verification error: {}", exception.getMessage());
             }
         }
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userService.loadUserByUsername(username);
+            UserDetails userDetails = jwtService.extractAndValidateJwtTokenFromHeader(request);
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authToken);
         }
         filterChain.doFilter(request, response);
-    }
-    public void setJwtVerifier(RSAPublicKey rsaPublicKey) {
-        Algorithm algorithm = Algorithm.RSA256(rsaPublicKey);
-        jwtVerifier = JWT.require(algorithm).build();
     }
 }
