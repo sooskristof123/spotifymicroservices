@@ -52,7 +52,7 @@ public class JwtService {
      */
     public UserDetails extractAndValidateJwtTokenFromHeader(HttpServletRequest request) throws AuthenticationException, JWTVerificationException {
         Algorithm algorithm = Algorithm.RSA256(JwtService.getPublicKey());
-        JWTVerifier jwtVerifier =  JWT.require(algorithm).build();
+        jwtVerifier =  JWT.require(algorithm).build();
         String authorizationHeader = request.getHeader("Authorization");
         // get JWT token from Authorization header
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer")) {
