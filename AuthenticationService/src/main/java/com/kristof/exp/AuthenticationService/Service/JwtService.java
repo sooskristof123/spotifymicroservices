@@ -14,8 +14,7 @@ import org.springframework.stereotype.Service;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
-import java.util.Base64;
-import java.util.Date;
+import java.util.*;
 
 @Service
 @EnableScheduling
@@ -47,17 +46,19 @@ public class JwtService {
                 .sign(algorithm);
     }
     private void sendPublicKeyToServices(RSAPublicKey publicKey) {
-        // TODO after eureka is setup
         byte[] encodedPublicKey = publicKey.getEncoded();
         String base64PublicKey = Base64.getEncoder().encodeToString(encodedPublicKey);
         // set payload for request
         JSONObject requestPayload = new JSONObject();
         requestPayload.put("publicKey", base64PublicKey);
-        webClientService.sendPostRequest("http://localhost:8080/api/v1/config/publicKey", requestPayload).subscribe(response -> {
-            if (response.statusCode() == HttpStatusCode.valueOf(200)) {
-                log.info("Sending public key to service ConfigurationService returned with status code: {}", response.statusCode());
-            } else log.error("Sending public key to service ConfigurationService returned with status code: {}", response.statusCode());
-        });
+        // defining services to broadcast public key
+        // TODO change hashmap after eureka is setup
+        Arrays.asList("http://localhost:8080/api/v1/config/publicKey", "http://localhost:8090/api/v1/spotifyChecker/publicKey").forEach(service ->
+                webClientService.sendPostRequest(service, requestPayload).subscribe(response -> {
+                    if (response.statusCode() == HttpStatusCode.valueOf(200)) {
+                    log.info("Sending public key to service ConfigurationService returned with status code: {}", response.statusCode());
+                } else log.error("Sending public key to service ConfigurationService returned with status code: {}", response.statusCode());
+        }));
     }
     @Scheduled(fixedRate = 1000*60*60)
     private void generatePublicAndPrivateKeys() {

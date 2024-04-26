@@ -28,16 +28,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, JWTVerificationException {
         String authHeader = request.getHeader("Authorization");
         String username = null;
+        DecodedJWT decodedJWT = null;
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             try {
-                DecodedJWT decodedJWT = jwtService.getJwtVerifier().verify(authHeader.substring(7));
+                decodedJWT = jwtService.getJwtVerifier().verify(authHeader.substring(7));
                 username = decodedJWT.getSubject();
             } catch (JWTVerificationException exception) {
                 throw new JWTVerificationException(exception.getMessage());
             }
         }
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = jwtService.extractAndValidateJwtTokenFromHeader(request);
+            UserDetails userDetails = jwtService.extractUserDetailsFromJwtTokenFromHeader(request, decodedJWT);
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authToken);

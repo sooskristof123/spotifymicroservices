@@ -47,21 +47,13 @@ public class JwtService {
      * Extracting JWT token the Authorization header
      * @param request HTTP request
      * @return verified JWT
-     * @throws AuthenticationException if JWT token is not present
-     * @throws JWTVerificationException if JWT token is not valid
      */
-    public UserDetails extractAndValidateJwtTokenFromHeader(HttpServletRequest request) throws AuthenticationException, JWTVerificationException {
-        Algorithm algorithm = Algorithm.RSA256(JwtService.getPublicKey());
-        jwtVerifier =  JWT.require(algorithm).build();
-        String authorizationHeader = request.getHeader("Authorization");
+    public UserDetails extractUserDetailsFromJwtTokenFromHeader(HttpServletRequest request, DecodedJWT decodedJWT) {
         // get JWT token from Authorization header
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer")) {
-            DecodedJWT decodedJWT = jwtVerifier.verify(authorizationHeader.substring(7));
-            UserDetail userDetails = new UserDetail();
-            userDetails.setUsername(decodedJWT.getSubject());
-            userDetails.setAuthorities(Stream.of(decodedJWT.getClaim("role").asString()).map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
-            return userDetails;
-        } throw new AuthenticationException("JWT Token is not present in request header");
+        UserDetail userDetails = new UserDetail();
+        userDetails.setUsername(decodedJWT.getSubject());
+        userDetails.setAuthorities(Stream.of(decodedJWT.getClaim("role").asString()).map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
+        return userDetails;
     }
     public void setJwtVerifier(RSAPublicKey rsaPublicKey) {
         Algorithm algorithm = Algorithm.RSA256(rsaPublicKey);
