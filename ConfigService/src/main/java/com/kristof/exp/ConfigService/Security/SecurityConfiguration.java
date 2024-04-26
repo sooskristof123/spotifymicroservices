@@ -25,7 +25,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/api/v1/config/publicKey").permitAll())
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/api/v1/config/property").authenticated())
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/actuator/*").permitAll())
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/actuator/metrics/*").hasAnyRole("ADMIN", "OPERATOR"))
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

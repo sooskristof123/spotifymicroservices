@@ -39,6 +39,10 @@ public class ConfigServiceController {
         return ResponseEntity.created(uriComponentsBuilder.path("/api/v1/config/property/{id}").buildAndExpand(newProperty.getPropertyId()).toUri())
                 .body(newProperty);
     }
+    /**
+     * Receive broadcast public key from AuthenticationService
+     * @param getPublicKeyRequestMapper a request mapper object
+     */
     @PostMapping("/publicKey")
     public void getPublicKeyFromAuthenticationService(@RequestBody GetPublicKeyRequestMapper getPublicKeyRequestMapper) {
         try {

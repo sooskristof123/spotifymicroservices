@@ -2,6 +2,7 @@ package com.kristof.exp.AuthenticationService.Service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +19,10 @@ import java.util.Date;
 
 @Service
 @EnableScheduling
+@Slf4j
 public class JwtService {
     private final KeyPair keyPair;
     private final WebClientService webClientService;
-    private final Logger logger = LoggerFactory.getLogger(JwtService.class);
     RSAPrivateKey privateKey;
     RSAPublicKey publicKey;
     public JwtService(KeyPair keyPair, WebClientService webClientService) {
@@ -49,13 +50,13 @@ public class JwtService {
         // TODO after eureka is setup
         byte[] encodedPublicKey = publicKey.getEncoded();
         String base64PublicKey = Base64.getEncoder().encodeToString(encodedPublicKey);
-        logger.info(base64PublicKey);
+        // set payload for request
         JSONObject requestPayload = new JSONObject();
         requestPayload.put("publicKey", base64PublicKey);
         webClientService.sendPostRequest("http://localhost:8080/api/v1/config/publicKey", requestPayload).subscribe(response -> {
             if (response.statusCode() == HttpStatusCode.valueOf(200)) {
-                logger.info("Sending public key to service ConfigurationService returned with status code: {}", response.statusCode());
-            } else logger.error("Sending public key to service ConfigurationService returned with status code: {}", response.statusCode());
+                log.info("Sending public key to service ConfigurationService returned with status code: {}", response.statusCode());
+            } else log.error("Sending public key to service ConfigurationService returned with status code: {}", response.statusCode());
         });
     }
     @Scheduled(fixedRate = 1000*60*60)

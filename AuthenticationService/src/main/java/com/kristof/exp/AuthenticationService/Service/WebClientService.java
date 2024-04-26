@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class WebClientService {
-    private WebClient webClient = WebClient.create();
+    private final WebClient webClient = WebClient.create();
     /**
      * generalized way to send post requests
      * @param requestUrl the request url
