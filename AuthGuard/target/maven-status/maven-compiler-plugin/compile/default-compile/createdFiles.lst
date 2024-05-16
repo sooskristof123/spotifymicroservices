@@ -1,0 +1,3 @@
+com\kristof\exp\AuthGuard\Model\UserDetail.class
+com\kristof\exp\AuthGuard\Security\JwtAuthenticationFilter.class
+com\kristof\exp\AuthGuard\Service\JwtService.class

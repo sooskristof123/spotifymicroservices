@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "environments")
+@Table(name = "environments", schema = "spotifychecker")
 @Getter
 @Setter
 public class Environment implements Serializable {

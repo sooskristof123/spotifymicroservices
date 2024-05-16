@@ -1,0 +1,165 @@
+2024-05-16T03:11:58.783+02:00  INFO 26368 --- [AuthenticationService] [main] c.k.e.A.AuthenticationServiceApplication : Starting AuthenticationServiceApplication using Java 22.0.1 with PID 26368 (C:\dev\spotifymicroservicesGITLAB\spotifymicroservices\AuthenticationService\target\classes started by soosk in C:\dev\spotifymicroservicesGITLAB\spotifymicroservices)
+2024-05-16T03:11:58.785+02:00  INFO 26368 --- [AuthenticationService] [main] c.k.e.A.AuthenticationServiceApplication : The following 1 profile is active: "dev"
+2024-05-16T03:11:58.847+02:00  INFO 26368 --- [AuthenticationService] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : https://configservice.onrender.com
+2024-05-16T03:11:58.847+02:00  WARN 26368 --- [AuthenticationService] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Could not locate PropertySource ([ConfigServerConfigDataResource@7ed9499e uris = array<String>['https://configservice.onrender.com'], optional = true, profiles = 'default']): 503 Service Unavailable: "<!DOCTYPE html><EOL><html lang="en"><EOL><head><EOL>    <meta charset="UTF-8"><EOL>    <meta name="viewport" content="width=device-width, initial-scale=1" /><EOL>    <title>Service Suspended</title><EOL></head><EOL><body><EOL>This service has been suspended by its owner.<EOL></body><EOL></html><EOL>"
+2024-05-16T03:11:58.847+02:00  INFO 26368 --- [AuthenticationService] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : https://configservice.onrender.com
+2024-05-16T03:11:58.847+02:00  WARN 26368 --- [AuthenticationService] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Could not locate PropertySource ([ConfigServerConfigDataResource@3fc05ea2 uris = array<String>['https://configservice.onrender.com'], optional = true, profiles = 'dev']): 503 Service Unavailable: "<!DOCTYPE html><EOL><html lang="en"><EOL><head><EOL>    <meta charset="UTF-8"><EOL>    <meta name="viewport" content="width=device-width, initial-scale=1" /><EOL>    <title>Service Suspended</title><EOL></head><EOL><body><EOL>This service has been suspended by its owner.<EOL></body><EOL></html><EOL>"
+2024-05-16T03:11:58.847+02:00  INFO 26368 --- [AuthenticationService] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : https://configservice.onrender.com
+2024-05-16T03:11:58.848+02:00  WARN 26368 --- [AuthenticationService] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Could not locate PropertySource ([ConfigServerConfigDataResource@7c891ba7 uris = array<String>['https://configservice.onrender.com'], optional = true, profiles = 'default']): 503 Service Unavailable: "<!DOCTYPE html><EOL><html lang="en"><EOL><head><EOL>    <meta charset="UTF-8"><EOL>    <meta name="viewport" content="width=device-width, initial-scale=1" /><EOL>    <title>Service Suspended</title><EOL></head><EOL><body><EOL>This service has been suspended by its owner.<EOL></body><EOL></html><EOL>"
+2024-05-16T03:11:59.892+02:00  INFO 26368 --- [AuthenticationService] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-16T03:12:00.097+02:00  INFO 26368 --- [AuthenticationService] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 192 ms. Found 2 JPA repository interfaces.
+2024-05-16T03:12:00.410+02:00  INFO 26368 --- [AuthenticationService] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=ee8c21be-fcbe-30d2-9875-b5216d08bb0c
+2024-05-16T03:12:01.028+02:00  INFO 26368 --- [AuthenticationService] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8091 (http)
+2024-05-16T03:12:01.049+02:00  INFO 26368 --- [AuthenticationService] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-05-16T03:12:01.049+02:00  INFO 26368 --- [AuthenticationService] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-05-16T03:12:01.182+02:00  INFO 26368 --- [AuthenticationService] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-05-16T03:12:01.183+02:00  INFO 26368 --- [AuthenticationService] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2332 ms
+2024-05-16T03:12:01.281+02:00  WARN 26368 --- [AuthenticationService] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'hibernateConfiguration': Injection of autowired dependencies failed
+2024-05-16T03:12:01.284+02:00  INFO 26368 --- [AuthenticationService] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-05-16T03:12:01.313+02:00  INFO 26368 --- [AuthenticationService] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-05-16T03:12:01.342+02:00 ERROR 26368 --- [AuthenticationService] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'hibernateConfiguration': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:514) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1419) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.4.jar:3.2.4]
+	at com.kristof.exp.AuthenticationService.AuthenticationServiceApplication.main(AuthenticationServiceApplication.java:11) ~[classes/:na]
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'spring.datasource.url' in value "${spring.datasource.url}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180) ~[spring-core-6.1.5.jar:6.1.5]
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126) ~[spring-core-6.1.5.jar:6.1.5]
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239) ~[spring-core-6.1.5.jar:6.1.5]
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210) ~[spring-core-6.1.5.jar:6.1.5]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:200) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:922) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1374) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508) ~[spring-beans-6.1.5.jar:6.1.5]
+	... 17 common frames omitted
+
+2024-05-16T03:16:58.784+02:00  INFO 23884 --- [AuthenticationService] [main] c.k.e.A.AuthenticationServiceApplication : Starting AuthenticationServiceApplication using Java 22.0.1 with PID 23884 (C:\dev\spotifymicroservicesGITLAB\spotifymicroservices\AuthenticationService\target\classes started by soosk in C:\dev\spotifymicroservicesGITLAB\spotifymicroservices)
+2024-05-16T03:16:58.786+02:00  INFO 23884 --- [AuthenticationService] [main] c.k.e.A.AuthenticationServiceApplication : The following 1 profile is active: "dev"
+2024-05-16T03:16:58.838+02:00  INFO 23884 --- [AuthenticationService] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : https://configservice.onrender.com
+2024-05-16T03:16:58.838+02:00  INFO 23884 --- [AuthenticationService] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=AuthenticationService, profiles=[default], label=null, version=null, state=null
+2024-05-16T03:16:58.838+02:00  INFO 23884 --- [AuthenticationService] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : https://configservice.onrender.com
+2024-05-16T03:16:58.838+02:00  INFO 23884 --- [AuthenticationService] [main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=AuthenticationService, profiles=[dev], label=null, version=null, state=null
+2024-05-16T03:16:59.620+02:00  INFO 23884 --- [AuthenticationService] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-16T03:16:59.750+02:00  INFO 23884 --- [AuthenticationService] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 122 ms. Found 2 JPA repository interfaces.
+2024-05-16T03:17:00.037+02:00  INFO 23884 --- [AuthenticationService] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=ee8c21be-fcbe-30d2-9875-b5216d08bb0c
+2024-05-16T03:17:00.577+02:00  INFO 23884 --- [AuthenticationService] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8091 (http)
+2024-05-16T03:17:00.596+02:00  INFO 23884 --- [AuthenticationService] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-05-16T03:17:00.598+02:00  INFO 23884 --- [AuthenticationService] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-05-16T03:17:00.681+02:00  INFO 23884 --- [AuthenticationService] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-05-16T03:17:00.681+02:00  INFO 23884 --- [AuthenticationService] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1840 ms
+2024-05-16T03:17:00.980+02:00  INFO 23884 --- [AuthenticationService] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-05-16T03:17:01.053+02:00  INFO 23884 --- [AuthenticationService] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-05-16T03:17:04.545+02:00  INFO 23884 --- [AuthenticationService] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-16T03:17:04.860+02:00  INFO 23884 --- [AuthenticationService] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-05-16T03:17:06.180+02:00  WARN 23884 --- [AuthenticationService] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-16T03:17:06.507+02:00  INFO 23884 --- [AuthenticationService] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2aa143ba, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7abe3d53, org.springframework.security.web.context.SecurityContextHolderFilter@612e1c6e, org.springframework.security.web.header.HeaderWriterFilter@7ba0c0e5, org.springframework.web.filter.CorsFilter@372dc92e, org.springframework.security.web.authentication.logout.LogoutFilter@3c79be0f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15045e40, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@34a8a5ad, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@a885aa1, org.springframework.security.web.access.ExceptionTranslationFilter@5435582e, org.springframework.security.web.access.intercept.AuthorizationFilter@f2bec99]
+2024-05-16T03:17:06.895+02:00  INFO 23884 --- [AuthenticationService] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8091 (http) with context path ''
+2024-05-16T03:17:06.914+02:00  INFO 23884 --- [AuthenticationService] [main] c.k.e.A.AuthenticationServiceApplication : Started AuthenticationServiceApplication in 10.592 seconds (process running for 11.181)
+2024-05-16T03:17:07.263+02:00 ERROR 23884 --- [AuthenticationService] [reactor-http-nio-3] reactor.core.publisher.Operators         : Operator called default onErrorDropped
+
+reactor.core.Exceptions$ErrorCallbackNotImplemented: org.springframework.web.reactive.function.client.WebClientRequestException: Connection refused: getsockopt: localhost/127.0.0.1:8090
+Caused by: org.springframework.web.reactive.function.client.WebClientRequestException: Connection refused: getsockopt: localhost/127.0.0.1:8090
+	at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:136) ~[spring-webflux-6.1.5.jar:6.1.5]
+	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
+Error has been observed at the following site(s):
+	*__checkpoint ⇢ Request to POST http://localhost:8090/api/v1/spotifyChecker/publicKey [DefaultWebClient]
+Original Stack Trace:
+		at org.springframework.web.reactive.function.client.ExchangeFunctions$DefaultExchangeFunction.lambda$wrapException$9(ExchangeFunctions.java:136) ~[spring-webflux-6.1.5.jar:6.1.5]
+		at reactor.core.publisher.MonoErrorSupplied.subscribe(MonoErrorSupplied.java:55) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4568) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onError(FluxPeek.java:222) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.MonoNext$NextSubscriber.onError(MonoNext.java:93) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.MonoFlatMapMany$FlatMapManyMain.onError(MonoFlatMapMany.java:205) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.SerializedSubscriber.onError(SerializedSubscriber.java:124) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.whenError(FluxRetryWhen.java:229) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenOtherSubscriber.onError(FluxRetryWhen.java:279) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onError(FluxContextWrite.java:121) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.maybeOnError(FluxConcatMapNoPrefetch.java:327) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.onNext(FluxConcatMapNoPrefetch.java:212) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.SinkManyEmitterProcessor.drain(SinkManyEmitterProcessor.java:476) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.SinkManyEmitterProcessor$EmitterInner.drainParent(SinkManyEmitterProcessor.java:620) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxPublish$PubSubInner.request(FluxPublish.java:874) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.request(FluxContextWrite.java:136) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxConcatMapNoPrefetch$FluxConcatMapNoPrefetchSubscriber.request(FluxConcatMapNoPrefetch.java:337) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.request(FluxContextWrite.java:136) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.Operators$DeferredSubscription.request(Operators.java:1743) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxRetryWhen$RetryWhenMainSubscriber.onError(FluxRetryWhen.java:196) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:205) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.netty.http.client.HttpClientConnect$MonoHttpConnect$ClientTransportSubscriber.onError(HttpClientConnect.java:311) ~[reactor-netty-http-1.1.17.jar:1.1.17]
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:205) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.netty.resources.DefaultPooledConnectionProvider$DisposableAcquire.onError(DefaultPooledConnectionProvider.java:172) ~[reactor-netty-core-1.1.17.jar:1.1.17]
+		at reactor.netty.internal.shaded.reactor.pool.AbstractPool$Borrower.fail(AbstractPool.java:488) ~[reactor-netty-core-1.1.17.jar:1.1.17]
+		at reactor.netty.internal.shaded.reactor.pool.SimpleDequePool.lambda$drainLoop$9(SimpleDequePool.java:436) ~[reactor-netty-core-1.1.17.jar:1.1.17]
+		at reactor.core.publisher.FluxDoOnEach$DoOnEachSubscriber.onError(FluxDoOnEach.java:186) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.MonoCreate$DefaultMonoSink.error(MonoCreate.java:205) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.netty.resources.DefaultPooledConnectionProvider$PooledConnectionAllocator$PooledConnectionInitializer.onError(DefaultPooledConnectionProvider.java:583) ~[reactor-netty-core-1.1.17.jar:1.1.17]
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.secondError(MonoFlatMap.java:241) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onError(MonoFlatMap.java:315) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:106) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.Operators.error(Operators.java:198) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.MonoError.subscribe(MonoError.java:53) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.Mono.subscribe(Mono.java:4568) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onError(FluxOnErrorResume.java:103) ~[reactor-core-3.6.4.jar:3.6.4]
+		at reactor.netty.transport.TransportConnector$MonoChannelPromise.tryFailure(TransportConnector.java:576) ~[reactor-netty-core-1.1.17.jar:1.1.17]
+		at reactor.netty.transport.TransportConnector$MonoChannelPromise.setFailure(TransportConnector.java:522) ~[reactor-netty-core-1.1.17.jar:1.1.17]
+		at reactor.netty.transport.TransportConnector.lambda$doConnect$7(TransportConnector.java:261) ~[reactor-netty-core-1.1.17.jar:1.1.17]
+		at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590) ~[netty-common-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:583) ~[netty-common-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:559) ~[netty-common-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492) ~[netty-common-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636) ~[netty-common-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:629) ~[netty-common-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:118) ~[netty-common-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.fulfillConnectPromise(AbstractNioChannel.java:322) ~[netty-transport-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:338) ~[netty-transport-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.107.Final.jar:4.1.107.Final]
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.107.Final.jar:4.1.107.Final]
+		at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:8090
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:1060) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[netty-transport-4.1.107.Final.jar:4.1.107.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:335) ~[netty-transport-4.1.107.Final.jar:4.1.107.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.107.Final.jar:4.1.107.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.107.Final.jar:4.1.107.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.107.Final.jar:4.1.107.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.107.Final.jar:4.1.107.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.107.Final.jar:4.1.107.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.107.Final.jar:4.1.107.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.107.Final.jar:4.1.107.Final]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+
+2024-05-16T03:17:08.443+02:00  INFO 23884 --- [AuthenticationService] [reactor-http-nio-2] c.k.e.A.Service.JwtService               : Sending public key to service ConfigurationService returned with status code: 200 OK

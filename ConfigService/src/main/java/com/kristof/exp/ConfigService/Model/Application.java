@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "applications")
+@Table(name = "applications", schema = "spotifychecker")
 @Getter
 @Setter
 public class Application {

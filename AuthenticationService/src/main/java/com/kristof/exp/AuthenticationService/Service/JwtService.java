@@ -53,7 +53,7 @@ public class JwtService {
         requestPayload.put("publicKey", base64PublicKey);
         // defining services to broadcast public key
         // TODO change hashmap after eureka is setup
-        Arrays.asList("http://localhost:8080/api/v1/config/publicKey", "http://localhost:8090/api/v1/spotifyChecker/publicKey").forEach(service ->
+        Arrays.asList("https://configservice.onrender.com/api/v1/config/publicKey", "http://localhost:8090/api/v1/spotifyChecker/publicKey").forEach(service ->
                 webClientService.sendPostRequest(service, requestPayload).subscribe(response -> {
                     if (response.statusCode() == HttpStatusCode.valueOf(200)) {
                     log.info("Sending public key to service ConfigurationService returned with status code: {}", response.statusCode());

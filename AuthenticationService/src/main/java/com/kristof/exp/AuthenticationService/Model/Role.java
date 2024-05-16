@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "roles", schema = "spotifychecker")
 @Getter
 @Setter
 public class Role {

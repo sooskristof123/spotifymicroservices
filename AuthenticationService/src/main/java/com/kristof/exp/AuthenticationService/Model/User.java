@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity()
-@Table(name = "users")
+@Table(name = "users", schema = "spotifychecker")
 @Getter
 @Setter
 public class User implements UserDetails {

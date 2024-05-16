@@ -1,0 +1,29 @@
+image : "jelastic/maven:3.9.4-openjdk-22.ea-b17"
+
+stages:
+  - build
+  - deploy
+
+build-job:
+  stage: build
+  script:
+    - cd AuthenticationService
+    - echo "Building the project..."
+    - echo "deploy token ${CI_DEPLOY_TOKEN}"
+    - mvn clean install -DskipTests -Dspring.profiles.active=dev
+    #- mvn deploy:deploy-file -Dskiptests -Dspring.profiles.active=dev -Dfile=target/AuthenticationService-0.0.1-SNAPSHOT.jar -Durl=https://$CI_REGISTRY -DrepositoryId=gitlab-maven
+    - mvn deploy -DskipTests=true -s ../settings.xml
+  artifacts:
+    paths:
+      - AuthenticationService/target/*.jar
+
+deploy-job:
+  stage: deploy
+  tags: 
+    - test
+  script:
+    - copy AuthenticationService/target/AuthenticationService-0.0.1-SNAPSHOT.jar \\kristofsoos\DevTools\AuthenticationService-0.0.1-SNAPSHOT.jar
+    - cd \\kristofsoos\DevTools
+    - Start-Process -FilePath C:\Users\soosk\.jdks\openjdk-22.0.1\bin\java.exe -ArgumentList '-jar AuthenticationService-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev'
+  dependencies:
+    - build-job

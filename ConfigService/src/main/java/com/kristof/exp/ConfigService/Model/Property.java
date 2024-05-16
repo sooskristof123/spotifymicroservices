@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "configuration_properties")
+@Table(name = "configuration_properties", schema = "spotifychecker")
 @Getter
 @Setter
 @NoArgsConstructor
